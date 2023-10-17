@@ -2,6 +2,7 @@ const dbConnection = require("../config/dbConfig");
 const { StatusCodes } = require("http-status-codes");
 const uuid = require("uuid");
 
+// post question controller
 async function postQuestions(req, res) {
   const { title, description, tag } = req.body;
 
@@ -29,4 +30,51 @@ async function postQuestions(req, res) {
   }
 }
 
-module.exports = { postQuestions };
+// all question controller
+async function allQuestions(req, res) {
+	try {
+		const [allQuestion] = await dbConnection.query(
+			`SELECT q.questionid, q.title, u.username FROM questions q JOIN users u ON q.userid = u.userid  ORDER BY id DESC;`
+		);
+		// console.log(allQuestion);
+		return res.status(200).json({ allQuestion });
+	} catch (error) {
+		// Log and return a 500 internal server error response if an error occurs
+		console.log(error.message);
+		res.status(500).json({ msg: "Something went wrong, please try again" });
+	}
+}
+
+// single question controller
+async function singleQuestion(req, res) {
+	const questionId = req.params.questions_id;
+
+	//check if the question id is provided by the user
+	if (!req.params.questions_id) {
+		return res.status(400).json({ msg: "single question id not provided" });
+	}
+
+	try {
+		//query to the database to select the question
+		const [oneQuestion] = await dbConnection.query(
+			"SELECT * FROM questions WHERE questionid = ?",
+			[questionId]
+		);
+
+		//check if the provided question id is not in the database
+		if (oneQuestion.length == 0) {
+			return res
+				.status(400)
+				.json({ msg: "question not found with the provided id" });
+		} else {
+			//if the provided question id is exist on the database return the data
+			res.send({ oneQuestion });
+		}
+	} catch (error) {
+		console.log(error.message);
+		res.status(500).json({ msg: "Something went wrong, please try again" });
+	}
+}
+
+
+module.exports = { postQuestions, allQuestions, singleQuestion };

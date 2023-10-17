@@ -16,7 +16,7 @@ const userRoutes = require("./routes/userRoutes");
 const questionsRoutes = require("./routes/questionRoutes");
 
 // routes middleware
-app.use("/api/users", userRoutes);
+app.use("/api/users",authMiddleware, userRoutes);
 app.use("/api/questions", authMiddleware, questionsRoutes);
 
 async function start() {
