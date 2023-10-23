@@ -15,7 +15,7 @@ function Ask() {
 				{
 					title: newQuestion,
 					description: description,
-					// tag: "your_tag_here", // You can replace with the actual tag
+					
 				},
 				{
 					headers: {
