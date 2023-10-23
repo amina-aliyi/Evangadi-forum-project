@@ -18,7 +18,7 @@ function App() {
 	console.log("this is the token", token);
 	// let navigate = useNavigate();
 	useEffect(() => {
-		fetch("http://localhost:1234/api/users/check", {
+		fetch("http://localhost:6001/api/users/check", {
 			headers: {
 				authorization: "Bearer " + token,
 			},
