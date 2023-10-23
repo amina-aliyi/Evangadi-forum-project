@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/userComtext";
 import PageviewRoundedIcon from "@mui/icons-material/PageviewRounded";
 
-import axiosBase from "../../axios";
+import axiosBase from "./axiosConfig";
 import { AppState } from "../../App";
 import QuestionDetail from "../question/QuestionDetail";
 import "./Home.css";

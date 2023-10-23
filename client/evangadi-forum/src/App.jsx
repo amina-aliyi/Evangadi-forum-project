@@ -8,6 +8,9 @@ import NotFound from "./components/main/NotFound";
 import { stateValue } from "./components/main/context";
 // import SingleQuestion from "./components/home/SingleQuestion";
 // import AskQuestion from "./components/home/AskQuestion";
+import Homes from "./components/home/Home";
+import SingleQuestion from "./components/home/SingleQuestion";
+import AskQuestion from "./components/home/AskQuestion";
 
 function App() {
 	let [username, setUserName] = useState("");
@@ -40,7 +43,9 @@ function App() {
 				<Routes>
 					<Route path="/" element={<SharedPage />}>
 						<Route path="/" element={<Home />} />
-						{/* <Route path="/allquestion" element={<AllQuestions />} /> */}
+						<Route path="/home" element={<Homes />} />
+						<Route path="/question" element={<SingleQuestion />} />
+						<Route path="/ask" element={<AskQuestion />} />
 						<Route path="*" element={<NotFound />} />
 						{/* <Route
 							path="/singlequestion/:questionId"
