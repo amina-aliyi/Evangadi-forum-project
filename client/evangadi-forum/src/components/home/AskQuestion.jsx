@@ -46,8 +46,8 @@ function Ask() {
 					<ArrowCircleRightTwoToneIcon className="topurpel" />
 					Review your question and post it here.
 				</h3>
-				<h1>
-					<ArrowCircleRightTwoToneIcon className="topurpel" />
+				<h1 classname="tocenter">
+					
 					Post Your Question
 				</h1>
 			</div>
