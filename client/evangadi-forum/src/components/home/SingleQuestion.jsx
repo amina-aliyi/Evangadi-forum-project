@@ -69,15 +69,12 @@ function SingleQuestion() {
 			if (response.data.msg) {
 				 setAlertMessage("Answer posted successfully." + response.data.msg);
 			}
-			// const newAnswerData = {
-			// 	answer: newAnswer,
-			// 	// You can include other fields here if needed
-			// };
-			// setAnswers([...answers, newAnswerData]);
+			
+			
 			setAnswers([...answers, {answer: newAnswer }]);
 			console.log(answers);
 			setNewAnswer("");
-			// fetchData();
+			
 			 setTimeout(() => {
 					setAlertMessage("");
 				}, 3000);
