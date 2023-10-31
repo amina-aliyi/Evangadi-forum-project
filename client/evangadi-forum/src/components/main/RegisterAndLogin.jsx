@@ -4,6 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 function RegisterAndLogin() {
 	const navigate = useNavigate();
 
+	//to toggle the register and login form
+	//updated toogle
+	let [firstToogle, setFirstToggle] = useState(true);
+	function registerAndLoginToogler() {
+		setFirstToggle(!firstToogle);
+	}
+
 	//states to store register data
 	let [registerResponse, setRegisterResponse] = useState("");
 	let [email, setEmail] = useState("");
@@ -68,30 +75,17 @@ function RegisterAndLogin() {
 				console.error("Error:", error);
 			});
 	}
-
-	//to toggle the register and login form
-	let [regDis, setRegDis] = useState("display");
-	let [logDis, setLogDis] = useState("");
-	function registerDisplay() {
-		setRegDis("display");
-		setLogDis("");
-	}
-	function loginDisplay() {
-		setLogDis("display");
-		setRegDis("");
-	}
-
 	return (
 		<div>
 			{/* register */}
-			<div className={regDis}>
+			<div className={`${firstToogle ? "display" : ""}`}>
 				<div className="mainRegisterWrapper">
 					<div className="secondRegisterWrapper">
 						<div className="joinNetwork">
 							<h3 className="textCenter">Join the network</h3>
 							<p className="textCenter">
 								Already have an account?{" "}
-								<span className="orange" onClick={registerDisplay}>
+								<span className="orange" onClick={registerAndLoginToogler}>
 									Sign in
 								</span>
 							</p>
@@ -145,7 +139,7 @@ function RegisterAndLogin() {
 							</p>
 							<p className="textCenter">
 								<br />
-								<p className="orange" onClick={registerDisplay}>
+								<p className="orange" onClick={registerAndLoginToogler}>
 									Already have an account?
 								</p>
 							</p>
@@ -155,14 +149,14 @@ function RegisterAndLogin() {
 			</div>
 
 			{/* login */}
-			<div className={logDis}>
+			<div className={`${firstToogle ? "" : "display"}`}>
 				<div className="mainRegisterWrapper">
 					<div className="secondRegisterWrapper">
 						<div className="joinNetwork">
 							<h3 className="textCenter">Login to your account</h3>
 							<p className="textCenter">
 								Don’t have an account?
-								<span className="orange" onClick={loginDisplay}>
+								<span className="orange" onClick={registerAndLoginToogler}>
 									Create a new account
 								</span>
 							</p>
